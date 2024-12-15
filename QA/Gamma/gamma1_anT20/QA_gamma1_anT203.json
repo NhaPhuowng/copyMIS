@@ -1,0 +1,106 @@
+[
+    {
+        "energy": -9.0,
+        "num_occurrences": 32,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -9.0,
+        "num_occurrences": 28,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -9.0,
+        "num_occurrences": 36,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -9.0,
+        "num_occurrences": 36,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -9.0,
+        "num_occurrences": 143,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -9.0,
+        "num_occurrences": 323,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -9.0,
+        "num_occurrences": 229,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -9.0,
+        "num_occurrences": 124,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -9.0,
+        "num_occurrences": 42,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -8.0,
+        "num_occurrences": 1,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -8.0,
+        "num_occurrences": 1,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -8.0,
+        "num_occurrences": 1,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -8.0,
+        "num_occurrences": 1,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -8.0,
+        "num_occurrences": 1,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -8.0,
+        "num_occurrences": 1,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "energy": -8.0,
+        "num_occurrences": 1,
+        "chain_break_fraction": 0.0
+    },
+    {
+        "Gamma": 1,
+        "Annealing_time": 20,
+        "So dinh": 20,
+        "So canh": 38,
+        "Mat do do thi": 0.2,
+        "Nang luong thap nhat bi sai ban dau": -9.0,
+        "vi pham": 13,
+        "solution dung": 468,
+        "Percent solution dung": 0.468,
+        "Best solutions of samples %": "0.9",
+        "Thoi gian chay": {
+            "qpu_sampling_time": 86940.0,
+            "qpu_anneal_time_per_sample": 20.0,
+            "qpu_readout_time_per_sample": 46.36,
+            "qpu_access_time": 102703.56,
+            "qpu_access_overhead_time": 3920.44,
+            "qpu_programming_time": 15763.56,
+            "qpu_delay_time_per_sample": 20.58,
+            "post_processing_overhead_time": 39.0,
+            "total_post_processing_time": 39.0
+        },
+        "MIS Ortools": 9
+    }
+]

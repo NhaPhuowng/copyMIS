@@ -1,0 +1,16 @@
+file_read,file_write,num_nodes,num_edges,graph_density,gamma,annealing_time,lowest_energy_dwave,lowest_energy_or_tools,vi pham,correct_solutions,percentage_correct,qpu_anneal_time_per_sample,qpu_access_time
+data_1.txt,QA_gamma3_anT501.json,20,38,0.2,3,50,-8.0,-8,1,868,86.8,20.0,159803.56
+data_2.txt,QA_gamma3_anT502.json,20,38,0.2,3,50,-9.0,-9,2,419,41.9,20.0,131560.76
+data_3.txt,QA_gamma3_anT503.json,20,38,0.2,3,50,-9.0,-9,2,730,73.0,20.0,111143.56
+data_4.txt,QA_gamma3_anT504.json,20,38,0.2,3,50,-9.0,-9,5,758,75.8,20.0,107504.36
+data_5.txt,QA_gamma3_anT505.json,20,38,0.2,3,50,-9.0,-9,5,873,87.3,20.0,132520.36
+data_6.txt,QA_gamma3_anT506.json,30,261,0.6,3,50,-5.0,-5,379,315,31.5,20.0,134284.36
+data_7.txt,QA_gamma3_anT507.json,30,261,0.6,3,50,-5.0,-5,532,91,9.1,20.0,136104.36
+data_8.txt,QA_gamma3_anT508.json,30,261,0.6,3,50,-5.0,-5,433,326,32.6,20.0,132581.96
+data_9.txt,QA_gamma3_anT509.json,30,261,0.6,3,50,-5.0,-5,603,53,5.3,20.0,127983.96
+data_10.txt,QA_gamma3_anT5010.json,30,261,0.6,3,50,-5.0,-5,389,85,8.5,20.0,115041.16
+data_11.txt,QA_gamma3_anT5011.json,40,312,0.4,3,50,-8.0,-8,795,64,6.4,20.0,109885.16
+data_12.txt,QA_gamma3_anT5012.json,40,312,0.4,3,50,-9.0,-9,400,237,23.7,20.0,165600.76
+data_13.txt,QA_gamma3_anT5013.json,40,312,0.4,3,50,-9.0,-9,489,105,10.5,20.0,112202.36
+data_14.txt,QA_gamma3_anT5014.json,40,312,0.4,3,50,-9.0,-9,574,2,0.2,20.0,159619.56
+data_15.txt,QA_gamma3_anT5015.json,40,312,0.4,3,50,-8.0,-8,831,12,1.2,20.0,184321.16

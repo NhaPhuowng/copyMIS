@@ -1,0 +1,16 @@
+file_read,file_write,num_nodes,num_edges,graph_density,gamma,annealing_time,lowest_energy_dwave,lowest_energy_or_tools,vi pham,correct_solutions,percentage_correct,qpu_anneal_time_per_sample,qpu_access_time
+data_1.txt,QA_gamma0_5_anT501.json,20,38,0.2,0.5,50,-9.5,-8,90,0,0.0,20.0,165343.96
+data_2.txt,QA_gamma0_5_anT502.json,20,38,0.2,0.5,50,-10.0,-9,110,0,0.0,20.0,130103.16
+data_3.txt,QA_gamma0_5_anT503.json,20,38,0.2,0.5,50,-9.5,-9,599,0,0.0,20.0,107323.56
+data_4.txt,QA_gamma0_5_anT504.json,20,38,0.2,0.5,50,-10.5,-9,21,0,0.0,20.0,166363.96
+data_5.txt,QA_gamma0_5_anT505.json,20,38,0.2,0.5,50,-10.5,-9,18,0,0.0,20.0,117440.76
+data_6.txt,QA_gamma0_5_anT506.json,30,261,0.6,0.5,50,-5.5,-5,2249,10,1.0,20.0,126562.36
+data_7.txt,QA_gamma0_5_anT507.json,30,261,0.6,0.5,50,-6.0,-5,1531,5,0.5,20.0,145044.36
+data_8.txt,QA_gamma0_5_anT508.json,30,261,0.6,0.5,50,-5.5,-5,822,0,0.0,20.0,130464.36
+data_9.txt,QA_gamma0_5_anT509.json,30,261,0.6,0.5,50,-6.0,-5,862,0,0.0,20.0,178579.96
+data_10.txt,QA_gamma0_5_anT5010.json,30,261,0.6,0.5,50,-6.0,-5,532,9,0.9,20.0,139524.36
+data_11.txt,QA_gamma0_5_anT5011.json,40,312,0.4,0.5,50,-9.5,-8,4880,0,0.0,20.0,201980.76
+data_12.txt,QA_gamma0_5_anT5012.json,40,312,0.4,0.5,50,-9.5,-9,2716,0,0.0,20.0,103401.56
+data_13.txt,QA_gamma0_5_anT5013.json,40,312,0.4,0.5,50,-9.5,-9,2102,1,0.1,20.0,127023.56
+data_14.txt,QA_gamma0_5_anT5014.json,40,312,0.4,0.5,50,-9.0,-9,3677,0,0.0,20.0,183144.36
+data_15.txt,QA_gamma0_5_anT5015.json,40,312,0.4,0.5,50,-8.5,-8,4472,0,0.0,20.0,111301.96

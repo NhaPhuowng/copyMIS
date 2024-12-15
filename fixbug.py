@@ -63,15 +63,33 @@ def count_num_penalty(response_data, graph):
         # tu list do tao nen cac cap canh kha thi, dem so cap thuoc do thi G
         possible_edge = list(combinations(test_list, 2))
         for x in possible_edge:
-            if (x in G.edges):
+            if (x in graph.edges):
                 penalty += 1
                 total_penalty += 1
     return total_penalty
 
-def count_percet_solution(response_data, lowest_energy):
+def check_violet(data_sample, graph):
+    #num = 0
+    #print(data_sample)
+    check_violet_list = []
+    for i in data_sample.keys():
+        if data_sample.get(i) == 1:
+            check_violet_list.append(i)
+            #print("Nut ", i, "co gia tri 1")
+    check_violet_edges = list(combinations(check_violet_list, 2))
+    #print("Danh sach cac cap canh duoc chon", check_violet_edges)
+    for edge in check_violet_edges:
+        if(edge in graph.edges()):
+            return 1
+            
+    return 0
+            
+def count_percet_solution(response_data, lowest_energy, graph):
     num_of_correct_solution = 0
     for data in response_data:
-        if (data.energy == lowest_energy_orTools):
+        if (data.energy == lowest_energy_orTools) and check_violet(data.sample, graph) == 0:
+            print("check_violet(data.sample, graph): ", check_violet(data.sample, graph))
+            print("data.num_occurrences: ", data.num_occurrences)
             num_of_correct_solution += data.num_occurrences
     return num_of_correct_solution
 
@@ -169,7 +187,7 @@ if __name__ == "__main__":
         list_of_ones = [1] * len(G.nodes)
         res_ortools = maximum_weighted_independent_set(list_of_ones, G.edges())
     
-        penalty_weigth_num = 2
+        penalty_weigth_num = 1
         Q = create_mis_qubo(G, penalty_weight=penalty_weigth_num)
         #print(Q)
     
@@ -193,23 +211,38 @@ if __name__ == "__main__":
         lowest_energy = response.first.energy
         lowest_energy_orTools = - res_ortools
     
-        for data in response.data():
-            print(data)
-        print("-------------------------------------------")
-        print("Gamma:", penalty_weigth_num)
-        print("Annealing_time:", annealingTime)
-        print("So dinh:", G.number_of_nodes())
-        print("So canh:", G.number_of_edges())
-        print("Mat do do thi:", count_denity_graph(G.number_of_nodes(), G.number_of_edges()))
-        print("Nang luong thap nhat bi sai ban dau la: ", lowest_energy)
-        print("So lan vi pham rang buoc: ", count_num_penalty(response.data(), G))
-        print("So solution dung la:", count_percet_solution(response.data(), lowest_energy_orTools))
-        print("Phan tram so cau tra loi dung: ", count_percet_solution(response.data(), lowest_energy_orTools)/10)
-        print("Best solutions are {}% of samples.".format(len(response.lowest(atol=0.5).record.energy)/10))
-        print(response.info["timing"])
-        print("Nang luong thap nhat va loi giai toi uu ortools: ", res_ortools)
-        print("qpu_anneal_time_per_sample:", timing_info['qpu_anneal_time_per_sample'])
-        print("qpu_access_time:", timing_info['qpu_access_time'])
+        x = 0
+        # for data in response.data():
+            # print(data.sample)
+        print(count_percet_solution(response.data(), lowest_energy_orTools, G))
+        print("Tong so rang buoc vi pham:", count_num_penalty(response.data(), G))
+            
+        
+        # print("------------------------------------------------") 
+        # print(response)
+        # print("\\\\\\\\\\\\")
+        # print(response.first.sample)
+
+        
+        
+        print("------------------#########")
+    
+            
+    #     print("-------------------------------------------")
+    #     print("Gamma:", penalty_weigth_num)
+    #     print("Annealing_time:", annealingTime)
+    #     print("So dinh:", G.number_of_nodes())
+    #     print("So canh:", G.number_of_edges())
+    #     print("Mat do do thi:", count_denity_graph(G.number_of_nodes(), G.number_of_edges()))
+    #     print("Nang luong thap nhat bi sai ban dau la: ", lowest_energy)
+    #     print("So lan vi pham rang buoc: ", count_num_penalty(response.data(), G))
+    #     print("So solution dung la:", count_percet_solution(response.data(), lowest_energy_orTools, G))
+    #     print("Phan tram so cau tra loi dung: ", count_percet_solution(response.data(), lowest_energy_orTools, G)/10)
+    #     print("Best solutions are {}% of samples.".format(len(response.lowest(atol=0.5).record.energy)/10))
+    #     print(response.info["timing"])
+    #     print("Nang luong thap nhat va loi giai toi uu ortools: ", res_ortools)
+    #     print("qpu_anneal_time_per_sample:", timing_info['qpu_anneal_time_per_sample'])
+    #     print("qpu_access_time:", timing_info['qpu_access_time'])
         
 
 
@@ -240,8 +273,8 @@ if __name__ == "__main__":
     #         "Mat do do thi": count_denity_graph(G.number_of_nodes(), G.number_of_edges()),
     #         "Nang luong thap nhat bi sai ban dau": lowest_energy,
     #         "vi pham": count_num_penalty(response.data(), G),
-    #         "solution dung": int(count_percet_solution(response.data(), lowest_energy_orTools)),
-    #         "Percent solution dung": count_percet_solution(response.data(), lowest_energy_orTools)/1000,
+    #         "solution dung": int(count_percet_solution(response.data(), lowest_energy_orTools, G)),
+    #         "Percent solution dung": count_percet_solution(response.data(), lowest_energy_orTools, G)/1000,
     #         "Best solutions of samples %": format(len(response.lowest(atol=0.5).record.energy)/10),
     #         "Thoi gian chay": response.info["timing"],
     #         "MIS Ortools": res_ortools

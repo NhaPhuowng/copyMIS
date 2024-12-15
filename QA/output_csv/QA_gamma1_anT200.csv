@@ -1,0 +1,16 @@
+file_read,file_write,num_nodes,num_edges,graph_density,gamma,annealing_time,lowest_energy_dwave,lowest_energy_or_tools,vi pham,correct_solutions,percentage_correct,qpu_anneal_time_per_sample,qpu_access_time
+data_1.txt,QA_gamma1_anT2001.json,20,38,0.2,1,200,-8.0,-8,94,236,23.6,20.0,173564.36
+data_2.txt,QA_gamma1_anT2002.json,20,38,0.2,1,200,-9.0,-9,92,459,45.9,20.0,132060.76
+data_3.txt,QA_gamma1_anT2003.json,20,38,0.2,1,200,-9.0,-9,13,472,47.2,20.0,130601.16
+data_4.txt,QA_gamma1_anT2004.json,20,38,0.2,1,200,-9.0,-9,39,276,27.6,20.0,151721.16
+data_5.txt,QA_gamma1_anT2005.json,20,38,0.2,1,200,-9.0,-9,43,226,22.6,20.0,119903.16
+data_6.txt,QA_gamma1_anT2006.json,30,261,0.6,1,200,-5.0,-5,307,3,0.3,20.0,133063.56
+data_7.txt,QA_gamma1_anT2007.json,30,261,0.6,1,200,-5.0,-5,1057,73,7.3,20.0,178143.16
+data_8.txt,QA_gamma1_anT2008.json,30,261,0.6,1,200,-5.0,-5,751,105,10.5,20.0,187942.36
+data_9.txt,QA_gamma1_anT2009.json,30,261,0.6,1,200,-5.0,-5,1287,87,8.7,20.0,143341.16
+data_10.txt,QA_gamma1_anT20010.json,30,261,0.6,1,200,-5.0,-5,616,47,4.7,20.0,216501.16
+data_11.txt,QA_gamma1_anT20011.json,40,312,0.4,1,200,-8.0,-8,957,84,8.4,20.0,149941.16
+data_12.txt,QA_gamma1_anT20012.json,40,312,0.4,1,200,-9.0,-9,1239,55,5.5,20.0,224421.16
+data_13.txt,QA_gamma1_anT20013.json,40,312,0.4,1,200,-9.0,-9,1100,83,8.3,20.0,187324.76
+data_14.txt,QA_gamma1_anT20014.json,40,312,0.4,1,200,-9.0,-9,1772,55,5.5,20.0,175323.96
+data_15.txt,QA_gamma1_anT20015.json,40,312,0.4,1,200,-8.0,-8,1981,13,1.3,20.0,139024.36

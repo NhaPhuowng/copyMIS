@@ -1,0 +1,16 @@
+file_read,file_write,num_nodes,num_edges,graph_density,gamma,annealing_time,lowest_energy_dwave,lowest_energy_or_tools,vi pham,correct_solutions,percentage_correct,qpu_anneal_time_per_sample,qpu_access_time
+data_1.txt,QA_gamma2_anT501.json,20,38,0.2,2,50,-8.0,-8,7,979,97.9,20.0,116599.96
+data_2.txt,QA_gamma2_anT502.json,20,38,0.2,2,50,-9.0,-9,1,821,82.1,20.0,133120.36
+data_3.txt,QA_gamma2_anT503.json,20,38,0.2,2,50,-9.0,-9,3,907,90.7,20.0,129603.96
+data_4.txt,QA_gamma2_anT504.json,20,38,0.2,2,50,-9.0,-9,4,943,94.3,20.0,118080.36
+data_5.txt,QA_gamma2_anT505.json,20,38,0.2,2,50,-9.0,-9,5,942,94.2,20.0,128703.96
+data_6.txt,QA_gamma2_anT506.json,30,261,0.6,2,50,-5.0,-5,389,366,36.6,20.0,184061.56
+data_7.txt,QA_gamma2_anT507.json,30,261,0.6,2,50,-5.0,-5,503,221,22.1,20.0,162942.76
+data_8.txt,QA_gamma2_anT508.json,30,261,0.6,2,50,-5.0,-5,540,152,15.2,20.0,139962.76
+data_9.txt,QA_gamma2_anT509.json,30,261,0.6,2,50,-5.0,-5,612,194,19.4,20.0,122482.36
+data_10.txt,QA_gamma2_anT5010.json,30,261,0.6,2,50,-5.0,-5,491,271,27.1,20.0,135463.56
+data_11.txt,QA_gamma2_anT5011.json,40,312,0.4,2,50,-8.0,-8,802,46,4.6,20.0,137643.16
+data_12.txt,QA_gamma2_anT5012.json,40,312,0.4,2,50,-9.0,-9,644,50,5.0,20.0,183843.16
+data_13.txt,QA_gamma2_anT5013.json,40,312,0.4,2,50,-9.0,-9,1021,18,1.8,20.0,117323.16
+data_14.txt,QA_gamma2_anT5014.json,40,312,0.4,2,50,-9.0,-9,784,8,0.8,20.0,166759.96
+data_15.txt,QA_gamma2_anT5015.json,40,312,0.4,2,50,-8.0,-8,822,54,5.4,20.0,146222.36

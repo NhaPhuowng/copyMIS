@@ -16,6 +16,7 @@ from ortools.linear_solver import pywraplp
 # DEV-898779584c4bed23fcf5bcbd657344d29493c2b9
 
 #DEV-1b5e467ff8bc1e44f94062b62fc90af26dbe982e
+# DEV-abdb7b8fee69d07f0d4c6c86533c64d7fd0e3e0c
 #pip install dwave-ocean-sdk
 from dwave.system.samplers import DWaveSampler
 from dwave.system.composites import EmbeddingComposite
@@ -63,15 +64,28 @@ def count_num_penalty(response_data, graph):
         # tu list do tao nen cac cap canh kha thi, dem so cap thuoc do thi G
         possible_edge = list(combinations(test_list, 2))
         for x in possible_edge:
-            if (x in G.edges):
+            if (x in graph.edges):
                 penalty += 1
                 total_penalty += 1
     return total_penalty
 
-def count_percet_solution(response_data, lowest_energy):
+def check_violet(data_sample, graph):
+    check_violet_list = []
+    for i in data_sample.keys():
+        if data_sample.get(i) == 1:
+            check_violet_list.append(i)
+        
+    check_violet_edges = list(combinations(check_violet_list, 2))
+    for edge in check_violet_edges:
+        if(edge in graph.edges()):
+            return 1
+            
+    return 0
+
+def count_percet_solution(response_data, lowest_energy, graph):
     num_of_correct_solution = 0
     for data in response_data:
-        if (data.energy == lowest_energy_orTools):
+        if (data.energy == lowest_energy_orTools) and check_violet(data.sample, graph) == 0:
             num_of_correct_solution += data.num_occurrences
     return num_of_correct_solution
 
@@ -85,16 +99,14 @@ def create_random_graph(n, num_edges):
         for j in range(i + 1, n):
             edges.append((i, j))
 
-    # Chọn ngẫu nhiên 147 cạnh từ danh sách
     random.shuffle(edges)
     selected_edges = edges[:num_edges]
     
-    input_folder = "input_data"  # Thư mục chứa các file TXT
-    file_to_read = "data_15.txt"  # File cần đọc
+    input_folder = "input_data"  
+    file_to_read = "data_15.txt"  
 
-    # Đường dẫn đầy đủ đến file
     file_path = os.path.join(input_folder, file_to_read)
-    # In các cạnh theo yêu cầu
+   
     if os.path.exists(file_path):
         with open(file_path, "w") as f:
             for edge in selected_edges:
@@ -148,14 +160,14 @@ if __name__ == "__main__":
     
     
     input_folder = "input_data"
-    output_folder = "NEW/PickAnT/gamma2_AnT200"
-    output_csv = "NEW/output_csv"
+    output_folder = "QA/Gamma/gamma1_anT20"
+    output_csv = "QA/output_csv"
     
     
-    for i in range(1, 2):
+    for i in range(1, 16):
         file_to_read = "data_" + str(i) + ".txt"
         file_path = os.path.join(input_folder, file_to_read)
-        print(file_path)
+        #print(file_path)
         
         if os.path.exists(file_path):
             print(file_path)
@@ -169,14 +181,14 @@ if __name__ == "__main__":
         list_of_ones = [1] * len(G.nodes)
         res_ortools = maximum_weighted_independent_set(list_of_ones, G.edges())
     
-        penalty_weigth_num = 2
+        penalty_weigth_num = 1
         Q = create_mis_qubo(G, penalty_weight=penalty_weigth_num)
         #print(Q)
     
         chainstrength = 8
         numruns = 1000
-        annealingTime = 200
-        sampler = EmbeddingComposite(DWaveSampler(token='DEV-1b5e467ff8bc1e44f94062b62fc90af26dbe982e'))
+        annealingTime = 20
+        sampler = EmbeddingComposite(DWaveSampler(token='DEV-abdb7b8fee69d07f0d4c6c86533c64d7fd0e3e0c'))
         response = sampler.sample(Q,
                                chain_strength=chainstrength,
                                num_reads=numruns,
@@ -193,8 +205,8 @@ if __name__ == "__main__":
         lowest_energy = response.first.energy
         lowest_energy_orTools = - res_ortools
     
-        for data in response.data():
-            print(data)
+        # for data in response.data():
+        #     print(data)
         print("-------------------------------------------")
         print("Gamma:", penalty_weigth_num)
         print("Annealing_time:", annealingTime)
@@ -203,8 +215,8 @@ if __name__ == "__main__":
         print("Mat do do thi:", count_denity_graph(G.number_of_nodes(), G.number_of_edges()))
         print("Nang luong thap nhat bi sai ban dau la: ", lowest_energy)
         print("So lan vi pham rang buoc: ", count_num_penalty(response.data(), G))
-        print("So solution dung la:", count_percet_solution(response.data(), lowest_energy_orTools))
-        print("Phan tram so cau tra loi dung: ", count_percet_solution(response.data(), lowest_energy_orTools)/10)
+        print("So solution dung la:", count_percet_solution(response.data(), lowest_energy_orTools, G))
+        print("Phan tram so cau tra loi dung: ", count_percet_solution(response.data(), lowest_energy_orTools, G)/10)
         print("Best solutions are {}% of samples.".format(len(response.lowest(atol=0.5).record.energy)/10))
         print(response.info["timing"])
         print("Nang luong thap nhat va loi giai toi uu ortools: ", res_ortools)
@@ -213,77 +225,77 @@ if __name__ == "__main__":
         
 
 
-    #     # Save data to folder out_put
-    #     file_to_write = "QA_gamma2_anT200" + str(i) +".json"
-    #     file_path_write = os.path.join(output_folder, file_to_write)
-    #     if not os.path.exists(output_folder):
-    #         os.makedirs(output_folder)
+        # Save data to folder out_put
+        file_to_write = "QA_gamma1_anT20" + str(i) +".json"
+        file_path_write = os.path.join(output_folder, file_to_write)
+        if not os.path.exists(output_folder):
+            os.makedirs(output_folder)
 
-    #     output_data = []
+        output_data = []
 
-    #     for data in response.data():
-    #         energy = data.energy
-    #         num_occurrences = data.num_occurrences
-    #         chain_break_fraction = data.chain_break_fraction
-    #         sample_info = {
-    #         "energy": energy,
-    #         "num_occurrences": int(num_occurrences),
-    #         "chain_break_fraction": chain_break_fraction
-    #         }
-    #         output_data.append(sample_info)
+        for data in response.data():
+            energy = data.energy
+            num_occurrences = data.num_occurrences
+            chain_break_fraction = data.chain_break_fraction
+            sample_info = {
+            "energy": energy,
+            "num_occurrences": int(num_occurrences),
+            "chain_break_fraction": chain_break_fraction
+            }
+            output_data.append(sample_info)
     
-    #     result_info = {
-    #         "Gamma": penalty_weigth_num,
-    #         "Annealing_time": annealingTime,
-    #         "So dinh": G.number_of_nodes(),
-    #         "So canh": G.number_of_edges(),
-    #         "Mat do do thi": count_denity_graph(G.number_of_nodes(), G.number_of_edges()),
-    #         "Nang luong thap nhat bi sai ban dau": lowest_energy,
-    #         "vi pham": count_num_penalty(response.data(), G),
-    #         "solution dung": int(count_percet_solution(response.data(), lowest_energy_orTools)),
-    #         "Percent solution dung": count_percet_solution(response.data(), lowest_energy_orTools)/1000,
-    #         "Best solutions of samples %": format(len(response.lowest(atol=0.5).record.energy)/10),
-    #         "Thoi gian chay": response.info["timing"],
-    #         "MIS Ortools": res_ortools
-    #     }
-    #     output_data.append(result_info)
+        result_info = {
+            "Gamma": penalty_weigth_num,
+            "Annealing_time": annealingTime,
+            "So dinh": G.number_of_nodes(),
+            "So canh": G.number_of_edges(),
+            "Mat do do thi": count_denity_graph(G.number_of_nodes(), G.number_of_edges()),
+            "Nang luong thap nhat bi sai ban dau": lowest_energy,
+            "vi pham": count_num_penalty(response.data(), G),
+            "solution dung": int(count_percet_solution(response.data(), lowest_energy_orTools, G)),
+            "Percent solution dung": count_percet_solution(response.data(), lowest_energy_orTools, G)/1000,
+            "Best solutions of samples %": format(len(response.lowest(atol=0.5).record.energy)/10),
+            "Thoi gian chay": response.info["timing"],
+            "MIS Ortools": res_ortools
+        }
+        output_data.append(result_info)
 
-    #     try:
-    #         with open(file_path_write, "w") as output_file:
-    #             json.dump(output_data, output_file, indent=4)
-    #         print(f"Results have been saved to {file_path_write}")
-    #     except Exception as e:
-    #         print(f"Error while writing JSON: {e}")
+        try:
+            with open(file_path_write, "w") as output_file:
+                json.dump(output_data, output_file, indent=4)
+            print(f"Results have been saved to {file_path_write}")
+        except Exception as e:
+            print(f"Error while writing JSON: {e}")
         
         
-    #     #to Data Frame
-    #     data_for_df.append({ # type: ignore
-    #             "file_read": file_to_read,
-    #             "file_write": file_to_write,
-    #             "num_nodes": G.number_of_nodes(),
-    #             "num_edges": G.number_of_edges(),
-    #             "graph_density": 2 * len(G.edges) / (G.number_of_nodes() * (G.number_of_nodes() - 1)),
-    #             "gamma": penalty_weigth_num,
-    #             "annealing_time": annealingTime,
-    #             "lowest_energy_dwave": lowest_energy,
-    #             "lowest_energy_or_tools": lowest_energy_orTools,
-    #             "vi pham": count_num_penalty(response.data(), G),
-    #             "correct_solutions": count_percet_solution(response.data(), lowest_energy_orTools),
-    #             "percentage_correct": count_percet_solution(response.data(), lowest_energy_orTools) / 10,
-    #             "qpu_anneal_time_per_sample": timing_info['qpu_anneal_time_per_sample'],
-    #             "qpu_access_time": timing_info['qpu_access_time']
+        #to Data Frame
+        data_for_df.append({ # type: ignore
+                "file_read": file_to_read,
+                "file_write": file_to_write,
+                "num_nodes": G.number_of_nodes(),
+                "num_edges": G.number_of_edges(),
+                "graph_density": 2 * len(G.edges) / (G.number_of_nodes() * (G.number_of_nodes() - 1)),
+                "gamma": penalty_weigth_num,
+                "annealing_time": annealingTime,
+                "lowest_energy_dwave": lowest_energy,
+                "lowest_energy_or_tools": lowest_energy_orTools,
+                "vi pham": count_num_penalty(response.data(), G),
+                "correct_solutions": count_percet_solution(response.data(), lowest_energy_orTools, G),
+                "percentage_correct": count_percet_solution(response.data(), lowest_energy_orTools, G) / 10,
+                "qpu_anneal_time_per_sample": timing_info['qpu_anneal_time_per_sample'],
+                "qpu_access_time": timing_info['qpu_access_time']
                 
-    #         })
+            })
         
-    # df = pd.DataFrame(data_for_df) # type: ignore
-    # print(df)
+    df = pd.DataFrame(data_for_df) # type: ignore
+    print(df)
     
-    # if not os.path.exists(output_csv):
-    #         os.makedirs(output_csv)
+    if not os.path.exists(output_csv):
+            os.makedirs(output_csv)
             
-    # df.to_csv(os.path.join(output_csv, "QA_gamma2_anT200.csv"), index=False)
+    df.to_csv(os.path.join(output_csv, "QA_gamma1_anT20.csv"), index=False)
 
-    # print("Data has been saved to gamma0_5_AnTime50_again.csv")
+    print("Data has been saved to gamma1_AnTime20_again.csv")
 
                 
 
